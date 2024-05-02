@@ -1,28 +1,25 @@
 package com.emsi.bookingsystem.entities;
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.*;
-import lombok.Data;
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class Receptioniste {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
+    @Column(name="nom")
+    public String nom;
+    @Column(name="prenom")
+    public String prenom;
+    @Column(name="telephone")
+    public String telephone;
     @Column(name="email")
     public String email;
     @Column(name="password")
     public String password;
-    @OneToMany(mappedBy = "recep", fetch = FetchType.LAZY)
-    private List<Chambre> chambres = new ArrayList<>();
+    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    public List<Reservation> Reservations =new ArrayList<>();
 }
