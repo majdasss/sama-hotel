@@ -8,7 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,5 +20,18 @@ import lombok.NoArgsConstructor;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
+    @Column(name="nom")
+    public String nom;
+    @Column(name="nbrchambres")
+    public Long nbrChambres;
+    @Column(name="telephone")
+    public String telephone;
+    @Column(name="adresse")
+    public String adresse;
+    @OneToMany(mappedBy = "hotel",fetch = FetchType.EAGER)
+    public List<Chambre> Chambres =new ArrayList<>();
+
 }
+
+
